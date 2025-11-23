@@ -1,0 +1,5 @@
+{
+  "name": "Q-Shield: Quaternionic Key Exchange Explorer",
+  "description": "An interactive research platform for simulating and visualizing non-commutative quaternionic cryptography as a post-quantum alternative to DH/ECDH.",
+  "requestFramePermissions": []
+}
