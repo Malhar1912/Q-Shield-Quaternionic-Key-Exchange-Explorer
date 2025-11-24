@@ -3,6 +3,7 @@ import { AppTab } from './types';
 import { SimulationLab } from './components/SimulationLab';
 import { AILab } from './components/AILab';
 import { Shield, Activity, Cpu, Box, BookOpen, Layers, Bot } from 'lucide-react';
+import { MathRenderer } from './components/MathRenderer';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<AppTab>(AppTab.DASHBOARD);
@@ -29,24 +30,25 @@ const App: React.FC = () => {
                   Traditional ECDH relies on abelian groups vulnerable to Shor's algorithm. Quaternions form a non-commutative ring, potentially evading these quantum attacks.
                 </p>
               </div>
+
               <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-quantum-500 transition-colors">
                 <Layers className="w-8 h-8 text-matrix-500 mb-4" />
                 <h3 className="text-lg font-bold text-white mb-2">The Math</h3>
                 <p className="text-slate-400 text-sm">
-                  Based on the Quaternion Conjugacy Search Problem (QCSP): Given $G$ and $T = AGA^{-1}$, finding $A$ is computationally hard over finite fields.
+                  Based on the Quaternion Conjugacy Search Problem (QCSP): Given <MathRenderer expression="G" /> and <MathRenderer expression="T = AGA^{-1}" />, finding <MathRenderer expression="A" /> is computationally hard over finite fields.
                 </p>
               </div>
               <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-quantum-500 transition-colors">
                 <Box className="w-8 h-8 text-pink-500 mb-4" />
                 <h3 className="text-lg font-bold text-white mb-2">Implementation</h3>
                 <p className="text-slate-400 text-sm">
-                  Simulate the protocol over $Z_p$, visualize the 4D rotations in 3D space, and analyze performance metrics against classical schemes.
+                  Simulate the protocol over <MathRenderer expression="Z_p" />, visualize the 4D rotations in 3D space, and analyze performance metrics against classical schemes.
                 </p>
               </div>
             </div>
 
             <div className="flex justify-center mt-8">
-              <button 
+              <button
                 onClick={() => setActiveTab(AppTab.SIMULATION)}
                 className="bg-quantum-600 hover:bg-quantum-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-quantum-500/25 transition-all flex items-center gap-2"
               >
@@ -76,23 +78,23 @@ const App: React.FC = () => {
               </div>
               <span className="font-bold text-xl tracking-tight text-slate-100">Q-Shield</span>
             </div>
-            
+
             <div className="hidden md:block">
               <div className="flex items-baseline space-x-4">
-                <NavButton 
-                  active={activeTab === AppTab.DASHBOARD} 
+                <NavButton
+                  active={activeTab === AppTab.DASHBOARD}
                   onClick={() => setActiveTab(AppTab.DASHBOARD)}
                   icon={<BookOpen size={16} />}
                   label="Overview"
                 />
-                <NavButton 
-                  active={activeTab === AppTab.SIMULATION} 
+                <NavButton
+                  active={activeTab === AppTab.SIMULATION}
                   onClick={() => setActiveTab(AppTab.SIMULATION)}
                   icon={<Cpu size={16} />}
                   label="Protocol Simulator"
                 />
-                <NavButton 
-                  active={activeTab === AppTab.AI_LAB} 
+                <NavButton
+                  active={activeTab === AppTab.AI_LAB}
                   onClick={() => setActiveTab(AppTab.AI_LAB)}
                   icon={<Bot size={16} />}
                   label="AI Research Lab"
@@ -114,11 +116,10 @@ const App: React.FC = () => {
 const NavButton = ({ active, onClick, icon, label }: { active: boolean, onClick: () => void, icon: React.ReactNode, label: string }) => (
   <button
     onClick={onClick}
-    className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-      active 
-        ? 'bg-quantum-900/50 text-quantum-400 border border-quantum-500/30' 
-        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-    }`}
+    className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${active
+      ? 'bg-quantum-900/50 text-quantum-400 border border-quantum-500/30'
+      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+      }`}
   >
     {icon}
     {label}
